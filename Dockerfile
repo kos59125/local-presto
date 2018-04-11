@@ -26,7 +26,7 @@ RUN  apt-get -qq update \
    && rm -rf /root/.m2 \
    && rm -f pom.xml \
    # user settings
-   && touch /opt/presto/,presto_history \
+   && touch /opt/presto/.presto_history \
    && useradd --system --home-dir /opt/presto --no-create-home presto \
    && chown -R presto:presto /opt/presto \
    # clean up
