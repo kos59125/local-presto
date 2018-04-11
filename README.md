@@ -25,7 +25,7 @@ connection-user=dbuser
 connection-password=dbpassword
 ```
 
-## Run image
+## Run container
 
 You must mount your properties file onto `/opt/presto/etc/catalog` at startup.
 
@@ -35,8 +35,15 @@ Example:
 $ docker run -v /path/to/mysql.properties:/opt/presto/etc/catalog/mysql.properties:ro -it kos59125/local-presto
 ```
 
-or:
+The entrypoint shell script of Presto is same as the Presto CLI.
+You can specify options of Presto CLI like `--catalog` and `--output-format`.
+
+Examples:
 
 ```bash
 $ docker run -v ... -it kos59125/local-presto --catalog mysql --schema mydb
+```
+
+```bash
+$ docker run -v ... kos59125/local-presto --execute "SELECT * FROM mysql.mydb.table LIMIT 100" --output-format CSV_HEADER >out.csv
 ```
